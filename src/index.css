@@ -17,6 +17,7 @@
   --lcd: #c9d08a;
   --lcd-ink: #1a1d0e;
   --lcd-edge: #8e9658;
+  --camo-image: url('/images/camo-woodland.webp');
 }
 
 [data-theme='desert'] {
@@ -36,6 +37,7 @@
   --lcd: #e3cf96;
   --lcd-ink: #2b2217;
   --lcd-edge: #b39b63;
+  --camo-image: url('/images/camo-desert.webp');
 }
 
 [data-theme='urban'] {
@@ -55,6 +57,7 @@
   --lcd: #c9cccf;
   --lcd-ink: #141516;
   --lcd-edge: #8c9094;
+  --camo-image: url('/images/camo-urban.webp');
 }
 
 :root {
@@ -162,16 +165,14 @@ a {
 }
 
 /* ---------- Camouflage body ---------- */
+/* Seamless woven-camo textures in /public/images, one per skin. */
 .camo {
   background-color: var(--camo-base);
   background-image:
-    radial-gradient(ellipse 62px 34px at 20% 28%, var(--camo-1) 97%, transparent 100%),
-    radial-gradient(ellipse 48px 70px at 72% 18%, var(--camo-2) 97%, transparent 100%),
-    radial-gradient(ellipse 84px 40px at 55% 76%, var(--camo-3) 97%, transparent 100%),
-    radial-gradient(ellipse 40px 30px at 88% 66%, var(--camo-4) 97%, transparent 100%),
-    radial-gradient(ellipse 46px 60px at 14% 82%, var(--camo-2) 97%, transparent 100%),
-    radial-gradient(ellipse 30px 22px at 44% 46%, var(--camo-3) 97%, transparent 100%);
-  background-size: 190px 190px;
+    radial-gradient(ellipse at 50% 40%, transparent 55%, rgba(0, 0, 0, 0.28) 100%),
+    var(--camo-image);
+  background-size: 100% 100%, 384px 384px;
+  background-repeat: no-repeat, repeat;
 }
 
 /* ---------- Radio shell ---------- */
@@ -977,7 +978,8 @@ a {
   height: 64px;
   border-radius: 8px;
   border: 2px solid var(--panel-deep);
-  background-size: 84px 84px;
+  background-image: var(--camo-image);
+  background-size: 160px 160px;
 }
 
 .theme-lcd {
