@@ -18,7 +18,14 @@ export function admin(): SupabaseClient {
   const url = process.env.VITE_SUPABASE_URL;
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
   if (!url || !key) throw new HttpError(500, 'Server is missing VITE_SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY.');
-  cached = createClient(url, key, { auth: { persistSession: false, autoRefreshToken: false } });
+  // Functions never open a realtime socket, but supabase-js builds a realtime
+  // client on creation and throws when the runtime lacks a native WebSocket
+  // (Node 20). Hand it an inert stand-in so the server works on any Node.
+  const transport = (globalThis as { WebSocket?: unknown }).WebSocket ?? class NoSocket {};
+  cached = createClient(url, key, {
+    auth: { persistSession: false, autoRefreshToken: false },
+    realtime: { transport: transport as never },
+  });
   return cached;
 }
 
