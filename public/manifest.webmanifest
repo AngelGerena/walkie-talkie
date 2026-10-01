@@ -1,0 +1,16 @@
+{
+  "name": "Security Detail Radio",
+  "short_name": "SD Radio",
+  "description": "Push-to-talk radio for the church security detail team.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#151812",
+  "theme_color": "#151812",
+  "icons": [
+    { "src": "/images/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/images/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/images/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
